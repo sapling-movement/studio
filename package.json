@@ -21,6 +21,7 @@
     "@sanity/default-login": "^2.27.0",
     "@sanity/desk-tool": "^2.27.3",
     "@sanity/vision": "^2.27.2",
+    "@sindresorhus/slugify": "^2.1.0",
     "prop-types": "^15.7",
     "react": "^17.0",
     "react-dom": "^17.0",
