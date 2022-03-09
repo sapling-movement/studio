@@ -14,12 +14,18 @@ export default {
       type: 'text',
     },
     {
-      name: 'slug',
-      title: 'Slug',
+      name: 'slugBase',
+      title: 'Slug base',
       type: 'slug',
       options: {
         source: 'pageBase.title'
       }
+    },
+    {
+      name: 'fullSlug',
+      title: 'Full slug',
+      type: 'string',
+      readOnly: true
     },
     {
       name: 'parent',
