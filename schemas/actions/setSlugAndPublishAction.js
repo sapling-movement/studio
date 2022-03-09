@@ -23,7 +23,7 @@ export default function SetSlugAndPublishAction(props) {
 
       const client = sanityClient.withConfig({apiVersion: `2022-01-10`});
 
-      let slug = slugify(props.draft.pageBase.slugBase.current);
+      let slug = slugify(props.draft.pageBase.slugBase?.current ?? '');
 
       if(props.draft.pageBase.parent) {
         const query = `*[_id == $ref][0]{"parentName": pageBase.title}`;

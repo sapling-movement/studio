@@ -2,6 +2,10 @@ export default {
   name: 'pageBase',
   title: 'Page base',
   type: 'object',
+  options: {
+    collapsible: true,
+    collapsed: false
+  },
   fields: [
     {
       name: 'title',
