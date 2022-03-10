@@ -1,0 +1,13 @@
+{
+  "idStructure": "subpath",
+  "referenceBehavior": "hard",
+  "base": "de",
+  "languages": [
+    {"name": "de", "title": "Deutsch"},
+    {"name": "en", "title": "Englisch"}
+  ],
+  "fieldNames": {
+    "lang": "__lang",
+    "references": "__lang_refs"
+  }
+}
