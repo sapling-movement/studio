@@ -3,6 +3,11 @@ import { useDocumentOperation } from '@sanity/react-hooks';
 import sanityClient from 'part:@sanity/base/client';
 import slugify from '@sindresorhus/slugify';
 
+const pathLangPrefixes = {
+  de: '',
+  en: '/en'
+}
+
 export default function SetSlugAndPublishAction(props) {
   const { patch, publish } = useDocumentOperation(props.id, props.type);
   const [ isPublishing, setIsPublishing ] = useState(false);
@@ -23,14 +28,21 @@ export default function SetSlugAndPublishAction(props) {
 
       const client = sanityClient.withConfig({apiVersion: `2022-01-10`});
 
-      let slug = slugify(props.draft.pageBase.slugBase?.current ?? '');
+      const base = props.draft.pageBase;
 
-      if(props.draft.pageBase.parent) {
-        const query = `*[_id == $ref][0]{"parentName": pageBase.title}`;
-        const params = { ref: props.draft.pageBase.parent._ref };
-        const { parentName } = await client.fetch(query, params);
-        slug = `${slugify(parentName)}/${slug}`;
+      let slug = slugify(base.slugBase?.current ?? '');
+
+      const query = `*[_id == $ref][0]{"parentSlug": pageBase.slugBase.current}`;
+
+      if(base.inheritedParent || base.parent) {
+
+        const params = { ref: base.inheritedParent?._ref ?? base.parent?._ref };
+        const { parentSlug } = await client.fetch(query, params);
+        slug = `${parentSlug}/${slug}`;
+
       }
+
+      slug = `${pathLangPrefixes[props.draft?.__lang ?? 'de']}/${slug}`
 
       patch.execute([
         {
