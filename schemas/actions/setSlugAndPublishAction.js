@@ -26,31 +26,33 @@ export default function SetSlugAndPublishAction(props) {
     onHandle: async () => {
       setIsPublishing(true);
 
-      const client = sanityClient.withConfig({apiVersion: `2022-01-10`});
-
-      const base = props.draft.pageBase;
-
-      let slug = slugify(base.slugBase?.current ?? '');
-
-      const query = `*[_id == $ref][0]{"parentSlug": pageBase.slugBase.current}`;
-
-      if(base.inheritedParent || base.parent) {
-
-        const params = { ref: base.inheritedParent?._ref ?? base.parent?._ref };
-        const { parentSlug } = await client.fetch(query, params);
-        slug = `${parentSlug}/${slug}`;
-
-      }
-
-      slug = `${pathLangPrefixes[props.draft?.__lang ?? 'de']}/${slug}`
-
-      patch.execute([
-        {
-          set: {
-            'pageBase.fullSlug': slug
-          }
+      if (props.draft._type == ('modularPage' || 'blogPost')) {
+        const client = sanityClient.withConfig({apiVersion: `2022-01-10`});
+  
+        const base = props.draft.pageBase;
+  
+        let slug = slugify(base.slugBase?.current ?? '');
+  
+        const query = `*[_id == $ref][0]{"parentSlug": pageBase.slugBase.current}`;
+  
+        if(base.inheritedParent || base.parent) {
+  
+          const params = { ref: base.inheritedParent?._ref ?? base.parent?._ref };
+          const { parentSlug } = await client.fetch(query, params);
+          slug = `${parentSlug}/${slug}`;
+  
         }
-      ]);
+  
+        slug = `${pathLangPrefixes[props.draft?.__lang ?? 'de']}/${slug}`
+  
+        patch.execute([
+          {
+            set: {
+              'pageBase.fullSlug': slug
+            }
+          }
+        ]);
+      }
 
       publish.execute();
 
