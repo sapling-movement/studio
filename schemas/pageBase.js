@@ -32,9 +32,19 @@ export default {
       readOnly: true
     },
     {
+      name: 'inheritedParent',
+      title: 'Inherited parent',
+      type: 'reference',
+      hidden: true,
+      to: [
+        { type: 'modularPage' }
+      ]
+    },
+    {
       name: 'parent',
       title: 'Parent',
       type: 'reference',
+      hidden: ({ document }) => document?.pageBase?.inheritedParent !== undefined,
       to: [
         { type: 'modularPage' },
       ],
