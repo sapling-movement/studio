@@ -5,8 +5,8 @@ export default {
   i18n: true,
   fields: [
     {
-      name: 'item',
-      title: 'Item',
+      name: 'items',
+      title: 'Items',
       type: 'array',
       of: [
         {
