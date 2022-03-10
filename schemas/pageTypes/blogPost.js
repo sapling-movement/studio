@@ -2,6 +2,7 @@ export default {
   name: 'blogPost',
   title: 'Blog Post',
   type: 'document',
+  i18n: true,
   fields: [
     {
       name: 'pageBase',
@@ -12,12 +13,23 @@ export default {
       name: 'text',
       title: 'Text',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        { type: 'block' },
+        { type: 'imageWithCaption' }
+      ],
     },
   ],
   preview: {
     select: {
       title: 'pageBase.title'
+    }
+  },
+  initialValue: {
+    pageBase: {
+      inheritedParent: {
+        _type: 'reference',
+        _ref: '2b6cf97f-7708-48f5-a544-e0d78c1fc34e'
+      }
     }
   }
 }

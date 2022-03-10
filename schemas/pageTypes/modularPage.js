@@ -2,6 +2,7 @@ export default {
   name: 'modularPage',
   title: 'Modular Page',
   type: 'document',
+  i18n: true,
   fields: [
     {
       name: 'pageBase',
@@ -12,7 +13,10 @@ export default {
       name: 'text',
       title: 'Text',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        { type: 'block' },
+        { type: 'imageWithCaption' }
+      ],
     },
   ],
   preview: {
