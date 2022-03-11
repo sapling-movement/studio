@@ -13,6 +13,12 @@ export default {
       type: 'string',
     },
     {
+      name: 'h1Title',
+      title: 'H1 title',
+      description: 'Use this to override the regular title in the H1 on the page.',
+      type: 'string'
+    },
+    {
       name: 'description',
       title: 'Description',
       type: 'text',
