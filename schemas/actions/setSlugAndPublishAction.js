@@ -2,23 +2,24 @@ import { useState, useEffect } from 'react';
 import { useDocumentOperation } from '@sanity/react-hooks';
 import sanityClient from 'part:@sanity/base/client';
 import slugify from '@sindresorhus/slugify';
+import { updateIntlFieldsForDocument } from 'sanity-plugin-intl-input/lib/utils';
 
 const pathLangPrefixes = {
   de: '',
   en: '/en'
 }
 
-export default function SetSlugAndPublishAction(props) {
-  const { patch, publish } = useDocumentOperation(props.id, props.type);
+export default function SetSlugAndPublishAction({ id, type, draft, onComplete }) {
+  const { patch, publish } = useDocumentOperation(id, type);
   const [ isPublishing, setIsPublishing ] = useState(false);
 
   useEffect(() => {
     // if the isPublishing state was set to true and the draft has changed
     // to become `null` the document has been published
-    if(isPublishing && !props.draft) {
+    if(isPublishing && !draft) {
       setIsPublishing(false);
     }
-  }, [props.draft]);
+  }, [draft]);
 
   return {
     disabled: publish.disabled,
@@ -26,10 +27,10 @@ export default function SetSlugAndPublishAction(props) {
     onHandle: async () => {
       setIsPublishing(true);
 
-      if (props.draft._type == ('modularPage' || 'blogPost')) {
+      if (draft._type == ('modularPage' || 'blogPost')) {
         const client = sanityClient.withConfig({apiVersion: `2022-01-10`});
   
-        const base = props.draft.pageBase;
+        const base = draft.pageBase;
   
         let slug = slugify(base.slugBase?.current ?? '');
   
@@ -43,7 +44,7 @@ export default function SetSlugAndPublishAction(props) {
   
         }
   
-        slug = `${pathLangPrefixes[props.draft?.__lang ?? 'de']}/${slug}`
+        slug = `${pathLangPrefixes[draft?.__lang ?? 'de']}/${slug}`
   
         patch.execute([
           {
@@ -55,8 +56,17 @@ export default function SetSlugAndPublishAction(props) {
       }
 
       publish.execute();
+      // the patch/set creates a new version of the document, so the ID is outdated
+      // await updateIntlFieldsForDocument(id, type);
+      
 
-      props.onComplete();
+      /**
+       * Todo: query for latest revision id
+       * 1. Get Document ID
+       * 2. Get Latest Revision ID -> Query https://b5y7zctp.api.sanity.io/v2022-03-10/data/history/production/documents/drafts.3978c05e-c447-4fc5-94fe-3e6867d23a90?time=2022-03-11T10:20:00Z
+       */
+
+      if (onComplete) onComplete();
 
     }
   }
