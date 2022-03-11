@@ -10,14 +10,45 @@ export default {
       type: 'pageBase',
     },
     {
-      name: 'text',
-      title: 'Text',
+      name: 'body',
+      title: 'Body',
       type: 'array',
       of: [
-        { type: 'block' },
-        { type: 'imageWithCaption' }
+        {
+          name: 'portableText',
+          title: 'Portable text',
+          type: 'portableText',
+        },
+        {
+          name: 'articleList',
+          title: 'Article list',
+          type: 'articleList',
+        },
+        // {
+        //   type: 'object',
+        //   fields: [
+        //     {
+        //       name: 'text',
+        //       title: 'Text',
+        //       type: 'array',
+        //       of: [
+        //         { type: 'block' },
+        //         { type: 'imageWithCaption' }
+        //       ],
+        //     }
+        //   ]
+        // }
       ],
     },
+    // {
+    //   name: 'text',
+    //   title: 'Text',
+    //   type: 'array',
+    //   of: [
+    //     { type: 'block' },
+    //     { type: 'imageWithCaption' }
+    //   ],
+    // },
   ],
   preview: {
     select: {
