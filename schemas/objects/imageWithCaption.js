@@ -7,11 +7,31 @@ export default {
       name: 'image',
       title: 'Image',
       type: 'image',
+      options: {
+        hotspot: true
+      },
       fields: [
         {
           name: 'alt',
-          title: 'Alt caption',
+          title: 'Alt description',
           type: 'string',
+        },
+        {
+          name: 'caption',
+          title: 'Caption',
+          type: 'string',
+        },
+        {
+          name: 'altAsCaption',
+          title: 'Alt as caption',
+          type: 'boolean',
+          description: 'If activated, the value for the alt tag will be rendered as the image caption.'
+        },
+        {
+          name: 'aspectRatio',
+          title: 'Aspect ratio',
+          type: 'string',
+          description: 'Use format `16x9`'
         },
       ]
     },
