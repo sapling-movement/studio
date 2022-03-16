@@ -1,3 +1,6 @@
+import React from 'react';
+import ImagePreview from '../../components/imagePreview';
+
 export default {
   name: 'imageWithCaption',
   title: 'Image with caption',
@@ -36,4 +39,10 @@ export default {
       ]
     },
   ],
+  preview: {
+    select: {
+      imageUrl: 'image.asset.url'
+    },
+    component: ImagePreview
+  }
 }
