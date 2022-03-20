@@ -27,7 +27,7 @@ export default function SetSlugAndPublishAction({ id, type, draft, onComplete })
     onHandle: async () => {
       setIsPublishing(true);
 
-      if (draft._type == ('modularPage' || 'blogPost')) {
+      if (['modularPage', 'blogPost'].includes(draft._type)) {
         const client = sanityClient.withConfig({apiVersion: `2022-01-10`});
   
         const base = draft.pageBase;

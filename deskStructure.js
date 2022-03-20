@@ -4,7 +4,7 @@ import Iframe from 'sanity-plugin-iframe-pane';
 
 // or manual implementation to use with your own custom desk structure
 export const getDefaultDocumentNode = ({schemaType}) => {
-  if (schemaType === ('modularPage' || 'blogPost')) {
+  if (['modularPage', 'blogPost'].includes(schemaType)) {
     return S.document().views([
       S.view.form(),
       S.view
