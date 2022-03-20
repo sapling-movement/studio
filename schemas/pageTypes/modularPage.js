@@ -15,6 +15,11 @@ export default {
       type: 'array',
       of: [
         {
+          name: 'heroSection',
+          title: 'Hero section',
+          type: 'heroSection',
+        },
+        {
           name: 'portableText',
           title: 'Portable text',
           type: 'portableText',
