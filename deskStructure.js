@@ -11,7 +11,7 @@ export const getDefaultDocumentNode = ({schemaType}) => {
         .component(Iframe)
         .options({
           url: (doc) => {
-            const base = process.env.SANITY_ACTIVE_ENV === 'production'
+            const base = true
               ? 'https://www.sapling-movement.com'
               : 'http://localhost:8888'
             return `${base}/preview/${doc._id}/`;
