@@ -18,6 +18,10 @@ export default {
         { type: 'imageWithCaption' }
       ],
     },
+    {
+      name: 'portableText',
+      type: 'portableText',
+    },
   ],
   preview: {
     select: {
