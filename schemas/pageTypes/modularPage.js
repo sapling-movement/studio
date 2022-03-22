@@ -29,31 +29,8 @@ export default {
           title: 'Article list',
           type: 'articleList',
         },
-        // {
-        //   type: 'object',
-        //   fields: [
-        //     {
-        //       name: 'text',
-        //       title: 'Text',
-        //       type: 'array',
-        //       of: [
-        //         { type: 'block' },
-        //         { type: 'imageWithCaption' }
-        //       ],
-        //     }
-        //   ]
-        // }
       ],
     },
-    // {
-    //   name: 'text',
-    //   title: 'Text',
-    //   type: 'array',
-    //   of: [
-    //     { type: 'block' },
-    //     { type: 'imageWithCaption' }
-    //   ],
-    // },
   ],
   preview: {
     select: {
