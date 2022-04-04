@@ -10,15 +10,6 @@ export default {
       type: 'pageBase',
     },
     {
-      name: 'text',
-      title: 'Text',
-      type: 'array',
-      of: [
-        { type: 'block' },
-        { type: 'imageWithCaption' }
-      ],
-    },
-    {
       name: 'portableText',
       type: 'portableText',
     },
