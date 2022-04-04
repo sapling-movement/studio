@@ -16,19 +16,20 @@ export default {
       of: [
         {
           name: 'heroSection',
-          title: 'Hero section',
           type: 'heroSection',
         },
         {
           name: 'portableText',
-          title: 'Portable text',
           type: 'portableText',
         },
         {
           name: 'articleList',
-          title: 'Article list',
           type: 'articleList',
         },
+        {
+          name: 'vectorText',
+          type: 'vectorText'
+        }
       ],
     },
   ],

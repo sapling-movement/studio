@@ -8,6 +8,7 @@ import pageBase from './objects/pageBase'
 import imageWithCaption from './objects/imageWithCaption'
 import portableText from './objects/portableText'
 import translation from './objects/translation'
+import vectorText from './objects/vectorText'
 
 import navigation from './documents/navigation'
 import uiTranslations from './documents/uiTranslations'
@@ -24,6 +25,7 @@ export default createSchema({
     imageWithCaption,
     portableText,
     translation,
+    vectorText,
     navigation,
     uiTranslations,
     modularPage,
