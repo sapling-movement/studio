@@ -10,9 +10,11 @@ import portableText from './objects/portableText'
 import translation from './objects/translation'
 import vectorText from './objects/vectorText'
 
+import author from './documents/author'
 import navigation from './documents/navigation'
 import uiTranslations from './documents/uiTranslations'
 
+import category from './pageTypes/category'
 import modularPage from './pageTypes/modularPage'
 import blogPost from './pageTypes/blogPost'
 
@@ -26,8 +28,10 @@ export default createSchema({
     portableText,
     translation,
     vectorText,
+    author,
     navigation,
     uiTranslations,
+    category,
     modularPage,
     blogPost
   ]),
