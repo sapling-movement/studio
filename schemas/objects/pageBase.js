@@ -44,7 +44,17 @@ export default {
       hidden: true,
       to: [
         { type: 'modularPage' }
-      ]
+      ],
+      options: {
+        filter: ({ document }) => {
+          return {
+            filter: '__lang == $lang',
+            params: {
+              lang: document.__lang
+            }
+          }
+        }
+      }
     },
     {
       name: 'parent',
@@ -54,6 +64,16 @@ export default {
       to: [
         { type: 'modularPage' },
       ],
+      options: {
+        filter: ({ document }) => {
+          return {
+            filter: '__lang == $lang',
+            params: {
+              lang: document.__lang
+            }
+          }
+        }
+      }
     },
   ],
 }
