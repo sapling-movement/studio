@@ -23,7 +23,7 @@ export const getDefaultDocumentNode = ({schemaType}) => {
         .title('Preview'),
       Structure.getDocumentNodeViewsForSchemaType(schemaType)[1]
     ]);
-  } else if (['navigation'].includes(schemaType)) {
+  } else if (['navigation', 'category'].includes(schemaType)) {
     return S.document().views([
       S.view.form(),
       Structure.getDocumentNodeViewsForSchemaType(schemaType)[1]
