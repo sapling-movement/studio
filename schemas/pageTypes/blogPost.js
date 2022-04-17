@@ -13,6 +13,49 @@ export default {
       name: 'portableText',
       type: 'portableText',
     },
+    {
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{ type: 'author' }],
+    },
+    {
+      name: 'categories',
+      title: 'Categories',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'category' }],
+          options: {
+            filter: ({ document }) => {
+              return {
+                filter: '__lang == $lang',
+                params: {
+                  lang: document.__lang
+                }
+              }
+            }
+          }
+        }
+      ],
+    },
+    // {
+    //   name: 'categories',
+    //   title: 'Categories',
+    //   type: 'reference',
+    //   to: [{ type: 'category' }],
+    //   options: {
+    //     filter: ({ document }) => {
+    //       return {
+    //         filter: '__lang == $lang',
+    //         params: {
+    //           lang: document.__lang
+    //         }
+    //       }
+    //     }
+    //   }
+    // },
   ],
   preview: {
     select: {
@@ -20,6 +63,7 @@ export default {
     }
   },
   initialValue: {
+    __lang: 'de',
     pageBase: {
       inheritedParent: {
         _type: 'reference',
