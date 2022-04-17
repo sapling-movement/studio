@@ -9,6 +9,12 @@ const pathLangPrefixes = {
   en: '/en'
 }
 
+/**
+ * Todos:
+ * - INTL Fields do not get generated automatically
+ * - hardcoded parents do not use translated docs (only use slug of default language)
+ */
+
 export default function SetSlugAndPublishAction({ id, type, draft, onComplete }) {
   const { patch, publish } = useDocumentOperation(id, type);
   const [ isPublishing, setIsPublishing ] = useState(false);
@@ -27,7 +33,7 @@ export default function SetSlugAndPublishAction({ id, type, draft, onComplete })
     onHandle: async () => {
       setIsPublishing(true);
 
-      if (['modularPage', 'blogPost'].includes(draft._type)) {
+      if (['modularPage', 'blogPost', 'category'].includes(draft._type)) {
         const client = sanityClient.withConfig({apiVersion: `2022-01-10`});
   
         const base = draft.pageBase;
